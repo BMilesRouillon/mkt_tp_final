@@ -13,11 +13,22 @@ Para cumplir con los objetivos de análisis, se diseñó un Data Warehouse con u
 
 ### Diagrama Visual del Modelo (Mermaid)
 
-Este diagrama representa la estructura final del Data Warehouse que se construirá con los scripts de Python.
-
 ```mermaid
+%% ===================================================
+%% DEFINICIÓN DE ESTILOS Y COLORES (APLICA A TODOS)
+%% ===================================================
+classDef fact fill:#F2C279,stroke:#b88b4a,stroke-width:2px;
+classDef dimConformed fill:#85C1E9,stroke:#5288ad,stroke-width:2px;
+classDef dimPrivate fill:#A3E4D7,stroke:#66a195,stroke-width:2px;
+
+%% ===================================================
+%% ESQUEMA 1: VENTAS (SALES)
+%% ===================================================
 erDiagram
-    %% --- Tablas de Hechos (Métricas) ---
+    %% --- Título del Diagrama ---
+    accTitle: Esquema Estrella de Ventas
+
+    %% --- Tablas ---
     FACT_SALES {
         int date_key "FK"
         int customer_key "FK"
@@ -30,71 +41,71 @@ erDiagram
         decimal line_total
     }
 
-    FACT_NPS_RESPONSES {
-        int date_key "FK"
-        int customer_key "FK"
-        int channel_key "FK"
-        smallint nps_score
-    }
-
-    FACT_WEB_SESSIONS {
-        int date_key "FK"
-        int customer_key "FK"
-        int session_count
-    }
-
-    %% --- Dimensiones (Contexto) ---
     DIM_DATE {
         int date_key "PK"
         date full_date
-        varchar month_name
-        int year_number
     }
 
     DIM_CUSTOMER {
         int customer_key "PK"
-        int customer_id "NK"
         varchar full_name
-        varchar email
     }
 
     DIM_CHANNEL {
         int channel_key "PK"
-        int channel_id "NK"
         varchar channel_name
     }
 
     DIM_PRODUCT {
         int product_key "PK"
-        int product_id "NK"
         varchar product_name
-        varchar category_name
     }
 
     DIM_STORE {
         int store_key "PK"
-        int store_id "NK"
         varchar store_name
-        varchar province_name
     }
 
     DIM_SETTLEMENT {
         int settlement_key "PK"
-        int settlement_id "NK"
         varchar center_name
     }
 
     %% --- Relaciones ---
-    DIM_DATE ||--o{ FACT_SALES : "fecha"
-    DIM_CUSTOMER ||--o{ FACT_SALES : "cliente"
-    DIM_PRODUCT ||--o{ FACT_SALES : "producto"
-    DIM_CHANNEL ||--o{ FACT_SALES : "canal"
-    DIM_STORE ||--o{ FACT_SALES : "tienda"
-    DIM_SETTLEMENT ||--o{ FACT_SALES : "despacho"
+    DIM_DATE ||--o{ FACT_SALES : "relaciona"
+    DIM_CUSTOMER ||--o{ FACT_SALES : "relaciona"
+    DIM_CHANNEL ||--o{ FACT_SALES : "relaciona"
+    DIM_PRODUCT ||--o{ FACT_SALES : "relaciona"
+    DIM_STORE ||--o{ FACT_SALES : "relaciona"
+    DIM_SETTLEMENT ||--o{ FACT_SALES : "relaciona"
 
-    DIM_DATE ||--o{ FACT_NPS_RESPONSES : "fecha"
-    DIM_CUSTOMER ||--o{ FACT_NPS_RESPONSES : "cliente"
-    DIM_CHANNEL ||--o{ FACT_NPS_RESPONSES : "canal"
+    %% --- Aplicar Estilos ---
+    class FACT_SALES fact;
+    class DIM_DATE,DIM_CUSTOMER,DIM_CHANNEL dimConformed;
+    class DIM_PRODUCT,DIM_STORE,DIM_SETTLEMENT dimPrivate;
 
-    DIM_DATE ||--o{ FACT_WEB_SESSIONS : "fecha"
-    DIM_CUSTOMER ||--o{ FACT_WEB_SESSIONS : "cliente"
+```
+[Image of a colorful star schema for sales]
+```mermaid
+%% ===================================================
+%% ESQUEMA 2: ENCUESTAS NPS (NPS RESPONSES)
+%% ===================================================
+erDiagram
+    accTitle: Esquema Estrella de NPS
+
+    %% --- Tablas ---
+    FACT_NPS_RESPONSES {
+        int date_key "FK"
+        int customer_key "FK"
+        int channel_key "FK"
+        smallint nps_score
+        int response_count
+    }
+
+    DIM_DATE {
+        int date_key "PK"
+        date full_date
+    }
+
+    DIM_CUSTOMER {
+        int customer_
