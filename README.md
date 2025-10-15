@@ -11,8 +11,6 @@ Repositorio del trabajo práctico final de la materia.
 
 Para cumplir con los objetivos de análisis, se diseñó un Data Warehouse con una **arquitectura de bus de datos** (o constelación de esquemas estrella). Este modelo cuenta con múltiples tablas de hechos que comparten dimensiones comunes (conformadas), lo que garantiza la consistencia al analizar KPIs de diferentes áreas del negocio.
 
-### Diagrama Visual del Modelo (Mermaid)
-
 ```mermaid
 %% ===================================================
 %% DEFINICIÓN DE ESTILOS Y COLORES (APLICA A TODOS)
@@ -83,29 +81,4 @@ erDiagram
     class FACT_SALES fact;
     class DIM_DATE,DIM_CUSTOMER,DIM_CHANNEL dimConformed;
     class DIM_PRODUCT,DIM_STORE,DIM_SETTLEMENT dimPrivate;
-
 ```
-[Image of a colorful star schema for sales]
-```mermaid
-%% ===================================================
-%% ESQUEMA 2: ENCUESTAS NPS (NPS RESPONSES)
-%% ===================================================
-erDiagram
-    accTitle: Esquema Estrella de NPS
-
-    %% --- Tablas ---
-    FACT_NPS_RESPONSES {
-        int date_key "FK"
-        int customer_key "FK"
-        int channel_key "FK"
-        smallint nps_score
-        int response_count
-    }
-
-    DIM_DATE {
-        int date_key "PK"
-        date full_date
-    }
-
-    DIM_CUSTOMER {
-        int customer_
