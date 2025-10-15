@@ -16,35 +16,85 @@ Para cumplir con los objetivos de análisis, se diseñó un Data Warehouse con u
 Este diagrama representa la estructura final del Data Warehouse que se construirá con los scripts de Python.
 
 ```mermaid
-graph TD
-    subgraph "Hechos (Métricas)"
-        F1[FACT_SALES]
-        F2[FACT_NPS_RESPONSES]
-        F3[FACT_WEB_SESSIONS]
-    end
+erDiagram
+    %% --- Tablas de Hechos (Métricas) ---
+    FACT_SALES {
+        int date_key "FK"
+        int customer_key "FK"
+        int product_key "FK"
+        int channel_key "FK"
+        int store_key "FK"
+        int settlement_key "FK"
+        bigint order_id "DD"
+        int quantity_sold
+        decimal line_total
+    }
 
-    subgraph "Dimensiones Conformadas (Compartidas)"
-        D1[DIM_DATE]
-        D2[DIM_CUSTOMER]
-        D3[DIM_CHANNEL]
-    end
+    FACT_NPS_RESPONSES {
+        int date_key "FK"
+        int customer_key "FK"
+        int channel_key "FK"
+        smallint nps_score
+    }
 
-    subgraph "Dimensiones Privadas (Solo para Ventas)"
-        D4[DIM_PRODUCT]
-        D5[DIM_STORE]
-        D6[DIM_SETTLEMENT]
-    end
+    FACT_WEB_SESSIONS {
+        int date_key "FK"
+        int customer_key "FK"
+        int session_count
+    }
 
-    F1 -- date_key --> D1
-    F1 -- customer_key --> D2
-    F1 -- channel_key --> D3
-    F1 -- product_key --> D4
-    F1 -- store_key --> D5
-    F1 -- settlement_key --> D6
+    %% --- Dimensiones (Contexto) ---
+    DIM_DATE {
+        int date_key "PK"
+        date full_date
+        varchar month_name
+        int year_number
+    }
 
-    F2 -- date_key --> D1
-    F2 -- customer_key --> D2
-    F2 -- channel_key --> D3
+    DIM_CUSTOMER {
+        int customer_key "PK"
+        int customer_id "NK"
+        varchar full_name
+        varchar email
+    }
 
-    F3 -- date_key --> D1
-    F3 -- customer_key --> D2
+    DIM_CHANNEL {
+        int channel_key "PK"
+        int channel_id "NK"
+        varchar channel_name
+    }
+
+    DIM_PRODUCT {
+        int product_key "PK"
+        int product_id "NK"
+        varchar product_name
+        varchar category_name
+    }
+
+    DIM_STORE {
+        int store_key "PK"
+        int store_id "NK"
+        varchar store_name
+        varchar province_name
+    }
+
+    DIM_SETTLEMENT {
+        int settlement_key "PK"
+        int settlement_id "NK"
+        varchar center_name
+    }
+
+    %% --- Relaciones ---
+    DIM_DATE ||--o{ FACT_SALES : "fecha"
+    DIM_CUSTOMER ||--o{ FACT_SALES : "cliente"
+    DIM_PRODUCT ||--o{ FACT_SALES : "producto"
+    DIM_CHANNEL ||--o{ FACT_SALES : "canal"
+    DIM_STORE ||--o{ FACT_SALES : "tienda"
+    DIM_SETTLEMENT ||--o{ FACT_SALES : "despacho"
+
+    DIM_DATE ||--o{ FACT_NPS_RESPONSES : "fecha"
+    DIM_CUSTOMER ||--o{ FACT_NPS_RESPONSES : "cliente"
+    DIM_CHANNEL ||--o{ FACT_NPS_RESPONSES : "canal"
+
+    DIM_DATE ||--o{ FACT_WEB_SESSIONS : "fecha"
+    DIM_CUSTOMER ||--o{ FACT_WEB_SESSIONS : "cliente"
