@@ -72,4 +72,62 @@ erDiagram
 
     %% --- Tablas ---
     FACT_NPS_RESPONSES {
-        int date
+        int date_key FK
+        int customer_key FK
+        int channel_key FK
+        smallint nps_score
+    }
+    DIM_DATE {
+        int date_key PK
+        date full_date
+    }
+    DIM_CUSTOMER {
+        int customer_key PK
+        varchar full_name
+    }
+    DIM_CHANNEL {
+        int channel_key PK
+        varchar channel_name
+    }
+
+    %% --- Relaciones ---
+    FACT_NPS_RESPONSES }o--|| DIM_DATE : "fecha"
+    FACT_NPS_RESPONSES }o--|| DIM_CUSTOMER : "cliente"
+    FACT_NPS_RESPONSES }o--|| DIM_CHANNEL : "canal"
+
+    %% --- Aplicar Estilos ---
+    class FACT_NPS_RESPONSES fact
+    class DIM_DATE,DIM_CUSTOMER,DIM_CHANNEL dimConformed
+```
+
+#### Esquema 3: Sesiones Web
+```mermaid
+erDiagram
+    %% --- Título y Estilos para el Diagrama de Sesiones Web ---
+    accTitle: Esquema Estrella de Sesiones Web
+    classDef fact fill:#F2C279,stroke:#b88b4a,stroke-width:2px,color:black
+    classDef dimConformed fill:#85C1E9,stroke:#5288ad,stroke-width:2px,color:black
+
+    %% --- Tablas ---
+    FACT_WEB_SESSIONS {
+        int date_key FK
+        int customer_key FK
+        int session_count
+    }
+    DIM_DATE {
+        int date_key PK
+        date full_date
+    }
+    DIM_CUSTOMER {
+        int customer_key PK
+        varchar full_name
+    }
+
+    %% --- Relaciones ---
+    FACT_WEB_SESSIONS }o--|| DIM_DATE : "fecha"
+    FACT_WEB_SESSIONS }o--|| DIM_CUSTOMER : "cliente"
+
+    %% --- Aplicar Estilos ---
+    class FACT_WEB_SESSIONS fact
+    class DIM_DATE,DIM_CUSTOMER dimConformed
+```
