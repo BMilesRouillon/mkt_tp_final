@@ -6,7 +6,7 @@ Para cumplir con los objetivos de análisis, se diseñó un Data Warehouse con u
 
 #### Esquema 1: Ventas (Sales)
 ```mermaid
- erDiagram
+   erDiagram
     %% --- Título y Estilos para el Diagrama de Ventas ---
     accTitle: Esquema Estrella de Ventas
     classDef fact fill:#F2C279,stroke:#b88b4a,stroke-width:2px,color:black
@@ -46,7 +46,7 @@ Para cumplir con los objetivos de análisis, se diseñó un Data Warehouse con u
 
 #### Esquema 2: Encuestas NPS
 ```mermaid
-erDiagram
+   erDiagram
     %% --- Título y Estilos para el Diagrama de NPS ---
     accTitle: Esquema Estrella de NPS
     classDef fact fill:#F2C279,stroke:#b88b4a,stroke-width:2px,color:black
@@ -75,7 +75,7 @@ erDiagram
 
 #### Esquema 3: Sesiones Web
 ```mermaid
-erDiagram
+   erDiagram
     %% --- Título y Estilos para el Diagrama de Sesiones Web ---
     accTitle: Esquema Estrella de Sesiones Web
     classDef fact fill:#F2C279,stroke:#b88b4a,stroke-width:2px,color:black
