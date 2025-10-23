@@ -22,3 +22,4 @@ A continuación se presentan los diagramas de estrella para cada tabla de hechos 
 
 ### 4. Modelo de Envíos (fact_shipments)
 ![Modelo de Envíos](./assets/fact_shipments.png)
+
