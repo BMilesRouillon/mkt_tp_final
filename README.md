@@ -6,3 +6,19 @@ Repositorio del trabajo prÃ¡ctico final de la materia.
 **Diagrama Entidad RelaciÃ³n:** [DER](./assets/DER.png)
 
 ```
+
+## Modelo del Data Warehouse (Esquema Estrella)
+
+A continuación se presentan los diagramas de estrella para cada tabla de hechos principal.
+
+### 1. Modelo de Ventas (fact_sales)
+![Modelo de Ventas](./assets/fact_sales.png)
+
+### 2. Modelo de NPS (fact_nps)
+![Modelo de NPS](./assets/fact_nps.png)
+
+### 3. Modelo de Sesiones (fact_sessions)
+![Modelo de Sesiones](./assets/fact_sessions.png)
+
+### 4. Modelo de Envíos (fact_shipments)
+![Modelo de Envíos](./assets/fact_shipments.png)
