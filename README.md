@@ -9,16 +9,17 @@ Repositorio del trabajo práctico final de la materia.
 A continuación se presentan los diagramas de estrella para cada tabla de hechos principal.
 
 ### 1. Modelo de Ventas (fact_sales)
-[Modelo de Ventas](./assets/fact_sales.png)
+[Modelo de Ventas](./assets/fact_saleskimball.png)
 
 ### 2. Modelo de NPS (fact_nps)
-[Modelo de NPS](./assets/fact_nps.png)
+[Modelo de NPS](./assets/fact_npskimball.png)
 
 ### 3. Modelo de Sesiones (fact_sessions)
-[Modelo de Sesiones](./assets/fact_sessions.png)
+[Modelo de Sesiones](./assets/fact_sessionskimball.png)
 
 ### 4. Modelo de Envíos (fact_shipments)
-[Modelo de Envíos](./assets/fact_shipments.png)
+[Modelo de Envíos](./assets/fact_shipmentskimball.png)
 
 
 ```
+
