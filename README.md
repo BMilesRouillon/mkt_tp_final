@@ -149,6 +149,7 @@ Toda la gestión del repositorio y la ejecución del pipeline se realizó a trav
     Copy-Item ...
     Set-Content ...
     Add-Content ...
-    ```
-* **ESPACIO PARA EL LINK DE LA CAPTURA DEL TABLERO:**
+
+## 7. CAPTURAS DEL TABLERO
+
 
