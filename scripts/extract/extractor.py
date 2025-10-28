@@ -2,13 +2,7 @@ import pandas as pd
 import os
 
 def get_raw_data(raw_dir):
-    """
-    Lee todos los archivos CSV de la carpeta 'raw' y los devuelve en un diccionario
-    de DataFrames, aplicando la corrección de encoding 'latin1'.
-    """
-    print("  -> Leyendo archivos RAW...")
-    
-    # Lista de todos los archivos que necesitamos del PDF
+   
     files_to_read = [
         'address.csv', 'channel.csv', 'customer.csv', 'nps_response.csv',
         'payment.csv', 'product.csv', 'product_category.csv', 'province.csv',
