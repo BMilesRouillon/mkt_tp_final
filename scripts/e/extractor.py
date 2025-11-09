@@ -12,7 +12,7 @@ def get_raw_data(raw_dir):
     
     dataframes = {}
     for file_name in files_to_read:
-        file_key = file_name.replace('.csv', '') # ej. 'customer'
+        file_key = file_name.replace('.csv', '') 
         file_path = os.path.join(raw_dir, file_name)
         
         try:
