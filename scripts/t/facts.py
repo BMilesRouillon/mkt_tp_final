@@ -1,13 +1,13 @@
 import pandas as pd
 import numpy as np
 
-def create_fact_sales_order(df_orders_valid, dim_date_lookup):
+def create_fact_sales_order(df_orders_all, dim_date_lookup):
+    df = df_orders_all.copy()
     
     # Atributos : - order_id, customer_id, channel_id, store_id, shipping_address_id, 
     #             - billing_address_id, date_key, status, subtotal, tax_amount, 
     #             - shipping_fee, total_amount
 
-    df = df_orders_valid.copy()
     df = pd.merge(
         df, 
         dim_date_lookup, 
@@ -21,14 +21,14 @@ def create_fact_sales_order(df_orders_valid, dim_date_lookup):
              
     return df
 
-def create_fact_sales_order_item(raw_data, df_orders_valid, dim_date_lookup):
+def create_fact_sales_order_item(raw_data, df_orders_all, dim_date_lookup):
     
     # Atributos : - order_item_id, order_id, product_id, date_key, quantity, 
     #             - unit_price, discount_amount, line_total
     df = raw_data['sales_order_item'].copy()
     df_valid_items = pd.merge(
         df,
-        df_orders_valid[['order_id', 'order_date_dt']], 
+        df_orders_all[['order_id', 'order_date_dt']], 
         on='order_id',
         how='inner' 
     )
@@ -43,23 +43,23 @@ def create_fact_sales_order_item(raw_data, df_orders_valid, dim_date_lookup):
                        'quantity', 'unit_price', 'discount_amount', 'line_total']]                 
     return df
 
-def create_fact_payment(raw_data, df_orders_valid, dim_date_lookup):
+def create_fact_payment(raw_data, df_orders_all, dim_date_lookup):
     
     # Atributos : - payment_id, order_id, date_key, method, amount, status
     
   
     df = raw_data['payment'].copy()
     
-    df_valid_payments = pd.merge(
+    df_all_payments = pd.merge(
         df,
-        df_orders_valid[['order_id', 'order_date_dt']],
+        df_orders_all[['order_id', 'order_date_dt']],
         on='order_id',
         how='inner'
     )
     
 
     df_with_date = pd.merge(
-        df_valid_payments,
+        df_all_payments,
         dim_date_lookup,
         left_on='order_date_dt',
         right_on='full_date_dt',
@@ -133,7 +133,6 @@ def create_fact_nps_response(raw_data, dim_date_lookup):
     # Atributos : - nps_id, customer_id, channel_id, date_key, score, 
     #             - nps_type, comment, responded_at
     
-    print("     - Creando fact_nps_response...")
     df = raw_data['nps_response'].copy()
     
     def classify_nps(score):
