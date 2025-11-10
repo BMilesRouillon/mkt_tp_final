@@ -30,14 +30,11 @@ def main():
 
     dim_date_lookup = dims_dict['dim_date'][['date_key', 'full_date']].copy()
     dim_date_lookup['full_date_dt'] = pd.to_datetime(dim_date_lookup['full_date']).dt.date
-    valid_status = ['PAID', 'FULFILLED']
-    df_orders = raw_data['sales_order'].copy()
-    df_orders_valid = df_orders[df_orders['status'].isin(valid_status)].copy()
-    df_orders_valid['order_date_dt'] = pd.to_datetime(df_orders_valid['order_date']).dt.date
-
-    facts_dict['fact_sales_order'] = f.create_fact_sales_order(df_orders_valid, dim_date_lookup)
-    facts_dict['fact_sales_order_item'] = f.create_fact_sales_order_item(raw_data, df_orders_valid, dim_date_lookup)
-    facts_dict['fact_payment'] = f.create_fact_payment(raw_data, df_orders_valid, dim_date_lookup)
+    df_orders_all = raw_data['sales_order'].copy()
+    df_orders_all['order_date_dt'] = pd.to_datetime(df_orders_all['order_date']).dt.date
+    facts_dict['fact_sales_order'] = f.create_fact_sales_order(df_orders_all, dim_date_lookup)
+    facts_dict['fact_sales_order_item'] = f.create_fact_sales_order_item(raw_data, df_orders_all, dim_date_lookup)
+    facts_dict['fact_payment'] = f.create_fact_payment(raw_data, df_orders_all, dim_date_lookup)
     facts_dict['fact_shipment'] = f.create_fact_shipment(raw_data, dim_date_lookup)
     facts_dict['fact_web_session'] = f.create_fact_web_session(raw_data, dim_date_lookup)
     facts_dict['fact_nps_response'] = f.create_fact_nps_response(raw_data, dim_date_lookup)
