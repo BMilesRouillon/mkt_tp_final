@@ -1,5 +1,6 @@
 # Trabajo Práctico Final — Introducción al Marketing Online y los Negocios Digitales
 
+Nombre: Benjamin Juan Miles Rouillon
 Repositorio del trabajo práctico final de la materia.
 
 **Consigna y documento principal:** [Trabajo Práctico Final](https://docs.google.com/document/d/15RNP3FVqLjO4jzh80AAkK6mUR5DOLqPxLjQxqvdzrYg/edit?usp=sharing)
@@ -72,7 +73,14 @@ Sigue estos pasos para ejecutar el pipeline ETL en tu máquina local.
 
 El Data Warehouse está modelado como un Esquema Estrella. Las tablas de dimensiones (DIM) rodean a las tablas de hechos (FACT).
 
+A continuación, se encuentran los esquemas estrella individuales para cada una de las 6 tablas de hechos:
 
+* [Ver Esquema: **fact_sales_order**](./assets/fact_sales_order.png)
+* [Ver Esquema: **fact_sales_order_item**](./assets/fact_sales_order_item.png)
+* [Ver Esquema: **fact_payment**](./assets/fact_payment.png)
+* [Ver Esquema: **fact_shipment**](./assets/fact_shipment.png)
+* [Ver Esquema: **fact_nps_response**](./assets/fact_nps_response.png)
+* [Ver Esquema: **fact_web_session**](./assets/fact_web_session.png)
 
 ## 📚 Diccionario de Datos
 
