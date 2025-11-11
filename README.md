@@ -8,7 +8,7 @@ Repositorio del trabajo práctico final de la materia.
 **Diagrama Entidad Relación (OLTP):** [DER](./assets/DER.png)
 
 
-*[➡️ Ver el Dashboard Interactivo en Power BI](https://app.powerbi.com/links/7_Yvm-nMlT?ctid=3e0513d6-68fa-416e-8de1-6c5cdc319ffa&pbi_source=linkShare)
+**[➡️ Ver el Dashboard Interactivo en Power BI](https://app.powerbi.com/links/7_Yvm-nMlT?ctid=3e0513d6-68fa-416e-8de1-6c5cdc319ffa&pbi_source=linkShare)**
 
 ---
 
@@ -268,7 +268,6 @@ Esta tabla detalla la lógica de negocio y las medidas DAX principales utilizada
 | **Ticket Promedio ($K)** | 💳 | `DIVIDE([Total Ventas], [Total Órdenes])` | `fact_sales_order` | `dim_date`, `dim_channel` |
 | **Usuarios Activos (nK)** | 👥 | `DISTINCTCOUNT('fact_web_session'[customer_id])` | `fact_web_session` | `dim_date` (por fecha de sesión) |
 | **NPS Score** | 🚀 | `DIVIDE(([Promotores] - [Detractores]), [Total Encuestas]) * 100` | `fact_nps_response` | `dim_date` (por fecha de respuesta), `dim_channel` |
-| **Ranking Productos** | 🏆 | `SUM('fact_sales_order_item'[line_total])` | `fact_sales_order_item` | `dim_product` (Nombre), `dim_date` (Mes) |
 | **Tiempo Entrega Prom.** | 🚚 | `AVERAGE('fact_shipment'[delivery_time_days])` | `fact_shipment` | `dim_date` (por fecha de envío), `dim_province` |
 
 ## Historial de Comandos de Consola
