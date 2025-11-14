@@ -8,7 +8,7 @@ Repositorio del trabajo práctico final de la materia.
 **Diagrama Entidad Relación (OLTP):** [DER](./assets/DER.png)
 
 
-**[➡️ Ver el Dashboard Interactivo en Power BI](https://app.powerbi.com/links/7_Yvm-nMlT?ctid=3e0513d6-68fa-416e-8de1-6c5cdc319ffa&pbi_source=linkShare)**
+**[➡️ Ver el Dashboard Interactivo en Power BI](https://app.powerbi.com/links/7_Yvm-nMlT?ctid=3e0513d6-68fa-416e-8de1-6c5cdc319ffa&pbi_source=linkShare&bookmarkGuid=20b89cce-82d0-4d6e-a86a-c6569dab14fc)**
 
 ---
 
